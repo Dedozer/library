@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Корзина</title>
+<title>Читательский билет</title>
 <link rel="stylesheet" href={{url_for('static', filename='css/cart.css')}} />
 <link rel="stylesheet" href={{url_for('static', filename='css/topStyle.css') }} />
 </head>
@@ -23,7 +23,6 @@
 	<div class="dropdown">
 		<button class="dropbtn">Здравствуйте, <br>{{firstName}}</button>
 		<div class="dropdown-content">
-			<a href="/account/orders">Заказы</a>
 			<a href="/account/profile">Профиль</a>
 			<hr>
 			<a href="/logout">Выйти</a>
@@ -33,12 +32,12 @@
 	<div id="kart">
 		<a class="link" href="/cart">
 		<img src={{url_for('static', filename='images/shoppingCart.png')}} id="cartIcon" />
-		Корзина: {{noOfItems}}
+		Читательский билет: {{noOfItems}}
 		</a>
 	</div>
 </div>
 <div id="cartItems">
-	<h2>Корзина</h2>
+	<h2>Читательский билет</h2>
 	<div id="tableItems">
 		{% for row in products %}
 		<div>
@@ -52,17 +51,16 @@
 				<a href="/removeFromCart?productId={{row[0]}}">Удалить</a>
 			</div>
 			<div id="itemPrice">
-				₽{{row[2]}}
+				{{row[2]}}
 			</div>
 		</div>
 		{% endfor %}
 		<hr id="seperator">
 		<div id="total">
-			<span id="subtotal">Итого</span> : ₽{{totalPrice}}
+			<span id="subtotal">Итого</span> : {{totalPrice}}
 		</div>
 	</div>
 </div>
-<a href="/checkout">Перейти к оплате</a>
 </body>
 </html>
 

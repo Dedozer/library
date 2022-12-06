@@ -23,7 +23,6 @@
 	<div class="dropdown">
 		<button class="dropbtn">Здравствуйте, <br>{{firstName}}</button>
 		<div class="dropdown-content">
-			<a href="/account/orders">Заказы</a>
 			<a href="/account/profile">Профиль</a>
 			<hr>
 			<a href="/logout">Выйти</a>
@@ -33,7 +32,7 @@
 	<div id="kart">
 		<a class="link" href="/cart">
 			<img src={{url_for('static', filename='images/shoppingCart.png')}} id="cartIcon" />
-			Корзина: {{noOfItems}}
+			Читательский билет: {{noOfItems}}
 		</a>
 	</div>
 </div>
