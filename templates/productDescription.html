@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Описание товара</title>
+<title>Описание книги</title>
 <link rel="stylesheet" href={{url_for('static', filename='css/productDescription.css')}} />
 <link rel="stylesheet" href={{ url_for('static', filename='css/topStyle.css')}} />
 </head>
@@ -23,7 +23,6 @@
 	<div class="dropdown">
 		<button class="dropbtn">Здравствуйте, <br>{{firstName}}</button>
 		<div class="dropdown-content">
-			<a href="/account/orders">Заказы</a>
 			<a href="/account/profile">Профиль</a>
 			<hr>
 			<a href="/logout">Выйти</a>
@@ -33,7 +32,7 @@
 	<div id="kart">
 		<a class="link" href="/cart">
 			<img src={{url_for('static', filename='images/shoppingCart.png')}} id="cartIcon" />
-			Корзина: {{noOfItems}}
+			Читательский билет: {{noOfItems}}
 		</a>
 	</div>
 </div>
@@ -53,7 +52,7 @@
 				<td>{{data[1]}}</td>
 			</tr>
 			<tr>
-				<td>Цена</td>
+				<td>Автор</td>
 				<td>₽{{data[2]}}</td>
 			</tr>
 			<tr>
@@ -65,7 +64,7 @@
 		<p>{{data[3]}}</p>
 	</div>
 	<div id="addToCart">
-		<a href="/addToCart?productId={{request.args.get('productId')}}">Добавить в корзину</a>
+		<a href="/addToCart?productId={{request.args.get('productId')}}">Добавить в читательский билет</a>
 	</div>
 </div>
 </body>
