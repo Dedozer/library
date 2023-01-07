@@ -129,7 +129,7 @@ def editProfile():
     loggedIn, firstName, noOfItems = getLoginDetails()
     with sqlite3.connect(my_file) as conn:
         cur = conn.cursor()
-        cur.execute("SELECT userId, email, firstName, lastName, address, zipcode, city, country, phone FROM users WHERE email = ?", (session['email'], ))
+        cur.execute("SELECT userId, email, firstName, lastName, number,  phone FROM users WHERE email = ?", (session['email'], ))
         profileData = cur.fetchone()
     conn.close()
     return render_template("editProfile.html", profileData=profileData, loggedIn=loggedIn, firstName=firstName, noOfItems=noOfItems)
@@ -169,16 +169,12 @@ def updateProfile():
         email = request.form['email']
         firstName = request.form['firstName']
         lastName = request.form['lastName']
-        address = request.form['address']
-        zipcode = request.form['zipcode']
-        city = request.form['city']
-        country = request.form['country']
+        number = request.form['number']
         phone = request.form['phone']
         with sqlite3.connect(my_file) as con:
                 try:
                     cur = con.cursor()
-                    cur.execute('UPDATE users SET firstName = ?, lastName = ?, address = ?, zipcode = ?, city = ?, country = ?, phone = ? WHERE email = ?', (firstName, lastName, address, zipcode, city, country, phone, email))
-
+                    cur.execute('UPDATE users SET firstName = ?, lastName = ?, number = ?,   phone = ? WHERE email = ?', (firstName, lastName, number,   phone, email))
                     con.commit()
                     msg = "Saved Successfully"
                 except:
@@ -297,16 +293,13 @@ def register():
         email = request.form['email']
         firstName = request.form['firstName']
         lastName = request.form['lastName']
-        address = request.form['address']
-        zipcode = request.form['zipcode']
-        city = request.form['city']
-        country = request.form['country']
+        number = request.form['number']
         phone = request.form['phone']
 
         with sqlite3.connect(my_file) as con:
             try:
                 cur = con.cursor()
-                cur.execute('INSERT INTO users (password, email, firstName, lastName, address, zipcode, city, country, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', (hashlib.md5(password.encode()).hexdigest(), email, firstName, lastName, address, zipcode, city, country, phone))
+                cur.execute('INSERT INTO users (password, email, firstName, lastName, number,   phone) VALUES (?, ?, ?, ?, ?, ? )', (hashlib.md5(password.encode()).hexdigest(), email, firstName, lastName, number,  phone))
 
                 con.commit()
 

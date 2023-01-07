@@ -10,10 +10,7 @@ conn.execute('''CREATE TABLE users
 		email TEXT,
 		firstName TEXT,
 		lastName TEXT,
-		address TEXT,
-		zipcode TEXT,
-		city TEXT,
-		country TEXT, 
+		number TEXT,
 		phone TEXT
 		)''')
 
