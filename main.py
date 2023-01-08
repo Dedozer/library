@@ -310,6 +310,23 @@ def register():
         con.close()
         return render_template("login.html", error=msg)
 
+@app.route("/adminPanel")
+def adminPanel():
+    if 'email' not in session:
+        return redirect(url_for('loginForm'))
+    loggedIn, firstName, noOfItems = getLoginDetails()
+    email = session['email']
+    with sqlite3.connect(my_file) as conn:
+        cur = conn.cursor()
+        cur.execute("SELECT role FROM users WHERE email = ?", (email, ))
+        role = cur.fetchone()
+    if 'admin' in role[0]:
+        return root()
+    else:
+        print(role[0])
+        return profileHome() 
+    
+
 @app.route("/registerationForm")
 def registrationForm():
     return render_template("register.html")
