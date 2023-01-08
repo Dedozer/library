@@ -321,9 +321,15 @@ def adminPanel():
         cur.execute("SELECT role FROM users WHERE email = ?", (email, ))
         role = cur.fetchone()
     if 'admin' in role[0]:
-        return root()
+        with sqlite3.connect(my_file) as conn:
+            cur = conn.cursor()
+            cur.execute("SELECT products.productId, products.name, products.price, products.image, kart.userId FROM products, kart WHERE products.productId = kart.productId")
+            products = cur.fetchall()
+        totalPrice = 0
+        # for row in products:
+        #     totalPrice += row[2]
+        return render_template("admin.html", products = products, totalPrice=totalPrice, loggedIn=loggedIn, firstName=firstName, noOfItems=noOfItems)
     else:
-        print(role[0])
         return profileHome() 
     
 

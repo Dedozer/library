@@ -11,14 +11,18 @@
 	<a href="/">
 		<img id="logo" src= {{ url_for('static', filename='images/logo.png') }} />
 	</a>
-	<form>
+	<a href="https://t.me/LibraryMIIGAIK_BOT" style="color:#ffffff">Мы в telegram
+		<img id="tg" src= {{ url_for('static', filename='images/tg.png') }} />
+	</a>
+	<form action="http://google.com/search" target="_blank">
 		<input id="searchBox" type="text" name="searchQuery">
+		<input type="hidden" name="as_sitesearch" value="http://127.0.0.1:5000">
 		<input id="searchButton" type="submit" value="Search">
 	</form>
 
 	{% if not loggedIn %}
 	<div id="signInButton">
-		<a class="link" href="/loginForm">Войти</a>
+		<a class="link" href="/loginForm" style="color:#ffffff">Войти</a>
 	</div>
 	{% else %}
 	<div class="dropdown">
@@ -31,7 +35,7 @@
 	</div>
 	{% endif %}
 	<div id="kart">
-		<a class="link" href="/cart">
+		<a class="link" href="/cart" style="color:#ffffff">
 			<img src={{url_for('static', filename='images/shoppingCart.png')}} id="cartIcon" />
 			Читательский билет: {{noOfItems}}
 		</a>

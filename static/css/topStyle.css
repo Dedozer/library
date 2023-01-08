@@ -8,10 +8,23 @@
 	float: left;
 }
 
+#tg {
+	height: 20px;
+	width: 20px;
+	float: left;
+	
+}
+#cartIcon {
+	height: 20px;
+	width: 20px;
+	float: left;
+}
+
 #title {
 	background-color: black;
 	display: inline-block;
 	width: 100%;
+	color: white
 }
 
 body {

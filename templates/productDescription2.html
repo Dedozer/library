@@ -6,36 +6,41 @@
 <link rel="stylesheet" href={{ url_for('static', filename='css/topStyle.css')}} />
 </head>
 <body>
-<div id="title">
-	<a href="/">
-		<img id="logo" src= {{ url_for('static', filename='images/logo.png') }} />
-	</a>
-	<form>
-		<input id="searchBox" type="text" name="searchQuery">
-		<input id="searchButton" type="submit" value="Search">
-	</form>
-
-	{% if not loggedIn %}
-	<div id="signInButton">
-		<a class="link" href="/loginForm">Войти</a>
-	</div>
-	{% else %}
-	<div class="dropdown">
-		<button class="dropbtn">Здравствуйте, <br>{{firstName}}</button>
-		<div class="dropdown-content">
-			<a href="/account/profile">Профиль</a>
-			<hr>
-			<a href="/logout">Выйти</a>
+	<div id="title">
+		<a href="/">
+			<img id="logo" src= {{ url_for('static', filename='images/logo.png') }} />
+		</a>
+		<a href="https://t.me/LibraryMIIGAIK_BOT" style="color:#ffffff">Мы в telegram
+			<img id="tg" src= {{ url_for('static', filename='images/tg.png') }} />
+		</a>
+		<form action="http://google.com/search" target="_blank">
+			<input id="searchBox" type="text" name="searchQuery">
+			<input type="hidden" name="as_sitesearch" value="http://127.0.0.1:5000">
+			<input id="searchButton" type="submit" value="Search">
+		</form>
+	
+		{% if not loggedIn %}
+		<div id="signInButton">
+			<a class="link" href="/loginForm" style="color:#ffffff">Войти</a>
+		</div>
+		{% else %}
+		<div class="dropdown">
+			<button class="dropbtn">Здравствуйте, <br>{{firstName}}</button>
+			<div class="dropdown-content">
+				<a href="/account/profile">Профиль</a>
+				<hr>
+				<a href="/logout">Выйти</a>
+			</div>
+		</div>
+		{% endif %}
+		<div id="kart">
+			<a class="link" href="/cart" style="color:#ffffff">
+				<img src={{url_for('static', filename='images/shoppingCart.png')}} id="cartIcon" />
+				Читательский билет: {{noOfItems}}
+			</a>
 		</div>
 	</div>
-	{% endif %}
-	<div id="kart">
-		<a class="link" href="/cart">
-			<img src={{url_for('static', filename='images/shoppingCart.png')}} id="cartIcon" />
-			Корзина: {{noOfItems}}
-		</a>
-	</div>
-</div>
+
 <div id="display">
 	<div id="productName">
 		<h1>{{data[1]}}</h1>
@@ -53,7 +58,7 @@
 			</tr>
 			<tr>
 				<td>Автор</td>
-				<td>₽{{data[2]}}</td>
+				<td>{{data[2]}}</td>
 			</tr>
 			<tr>
 				<td>Количество</td>
@@ -62,10 +67,30 @@
 		</table>
 		<h2>Описание</h2>
 		<p>{{data[3]}}</p>
+		<a href="#" download="https://www.miigaik.ru/upload/iblock/efd/efdeca49a7148909ca866c6bdb50d01e.pdf">
+			<button>Скачать файл</button>
+		</a>
 	</div>
 	<div>
 		<a>Книги нет в наличии</a>
 	</div>
+
 </div>
+<form name="comment" action="comment.php" method="post">
+	<p>
+	  <label>Ваше имя:</label>
+	  <input type="text" name="name" />
+	</p>
+	<p>
+	  <label>Ваш комментарий:</label>
+	  <br />
+	  <textarea name="text_comment" cols="30" rows="50"></textarea>
+	</p>
+	<p>
+	  <input type="hidden" name="page_id" value="150" />
+	  <input type="submit" value="Отправить комментарий" />
+	</p>
+  </form>
+  Источник: https://pribylwm.ru/blogovedenie/kak-sdelat-kommentarii-na-sajte.html
 </body>
 </html>
